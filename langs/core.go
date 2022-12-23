@@ -352,6 +352,14 @@ codealike.json`
 }
 
 func CreateBot(botName, platform, lang, pm, hs string) {
+	hostService := func() string {
+		if hs == "Render" {
+			return "render.com"
+		}
+
+		return "railway.app"
+	}
+
 	if err := os.Mkdir(botName, os.ModePerm); err != nil {
 		log.Fatal(err)
 	}
@@ -378,7 +386,7 @@ func CreateBot(botName, platform, lang, pm, hs string) {
 
 	botConfig.SetDefault("bot.lang", lang)
 	botConfig.SetDefault("bot.name", botName)
-	botConfig.SetDefault("bot.host_service", hs)
+	botConfig.SetDefault("bot.host_service", hostService())
 
 	if pm != "continue" {
 		botConfig.SetDefault("bot.package_manager", pm)

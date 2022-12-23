@@ -23,15 +23,15 @@ func main() {
 			return gjson.Get(string(c.Body()), value).String()
 		}
 
-		bwt.CreateBot(body("name"), body("platform"), body("lang"), body("packageManager"), body("hostService"))
-
 		hostService := func() string {
-			if body("hostService") == "render.com" {
+			if body("hostService") == "Render" {
 				return "render"
 			}
 
 			return "railway"
 		}
+
+		bwt.CreateBot(body("name"), body("platform"), body("lang"), body("packageManager"), body("hostService"))
 
 		if body("lang") == "c" {
 			bwt.CTemplate(body("name"), hostService())
