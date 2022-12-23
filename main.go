@@ -460,9 +460,9 @@ func createBot(botName, platform, lang, pm, hs string) {
 }
 
 func main() {
-	createBot(os.Args[0], os.Args[2], os.Args[3], os.Args[4], os.Args[1])
+	createBot(os.Args[1], os.Args[3], os.Args[4], os.Args[5], os.Args[2])
 
-	if os.Args[2] == "discord" && os.Args[3] == "c" {
-		bwt.CTemplate(os.Args[0], os.Args[1])
+	if os.Args[3] == "discord" && os.Args[4] == "c" {
+		bwt.CTemplate(os.Args[1], os.Args[2])
 	}
 }
