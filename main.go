@@ -23,50 +23,42 @@ func main() {
 			return gjson.Get(string(c.Body()), value).String()
 		}
 
-		hostService := func() string {
-			if body("hostService") == "Render" {
-				return "render"
-			}
-
-			return "railway"
-		}
-
 		bwt.CreateBot(body("name"), body("platform"), body("lang"), body("packageManager"), body("hostService"))
 
 		if body("lang") == "c" {
-			bwt.CTemplate(body("name"), hostService())
+			bwt.CTemplate(body("name"), body("hostService"))
 		} else if body("lang") == "cpp" {
-			bwt.CppTemplate(body("name"), body("platform"), hostService())
+			bwt.CppTemplate(body("name"), body("platform"), body("hostService"))
 		} else if body("lang") == "crystal" {
-			bwt.CrystalTemplate(body("name"), hostService())
+			bwt.CrystalTemplate(body("name"), body("hostService"))
 		} else if body("lang") == "csharp" {
-			bwt.CsharpTemplate(body("name"), body("platform"), hostService())
+			bwt.CsharpTemplate(body("name"), body("platform"), body("hostService"))
 		} else if body("lang") == "dart" {
-			bwt.DartTemplate(body("name"), body("platform"), hostService())
+			bwt.DartTemplate(body("name"), body("platform"), body("hostService"))
 		} else if body("lang") == "deno" {
-			bwt.DenoTemplate(body("name"), body("platform"), hostService())
+			bwt.DenoTemplate(body("name"), body("platform"), body("hostService"))
 		} else if body("lang") == "go" {
-			bwt.GoTemplate(body("name"), body("platform"), hostService())
+			bwt.GoTemplate(body("name"), body("platform"), body("hostService"))
 		} else if body("lang") == "java" {
-			bwt.JavaTemplate(body("name"), body("platform"), hostService())
+			bwt.JavaTemplate(body("name"), body("platform"), body("hostService"))
 		} else if body("lang") == "kotlin" {
-			bwt.KotlinTemplate(body("name"), body("platform"), hostService())
+			bwt.KotlinTemplate(body("name"), body("platform"), body("hostService"))
 		} else if body("lang") == "nim" {
-			bwt.NimTemplate(body("name"), body("platform"), hostService())
+			bwt.NimTemplate(body("name"), body("platform"), body("hostService"))
 		} else if body("lang") == "nodejs" {
 			bwt.NodejsTemplate(body("name"), body("packageManager"), body("platform"), body("hostService"), false)
 		} else if body("lang") == "typescript" {
 			bwt.NodejsTemplate(body("name"), body("packageManager"), body("platform"), body("hostService"), true)
 		} else if body("lang") == "php" {
-			bwt.PHPTemplate(body("name"), body("platform"), hostService())
+			bwt.PHPTemplate(body("name"), body("platform"), body("hostService"))
 		} else if body("lang") == "python" {
-			bwt.PythonTemplate(body("name"), body("platform"), body("packageManager"), hostService())
+			bwt.PythonTemplate(body("name"), body("platform"), body("packageManager"), body("hostService"))
 		} else if body("lang") == "ruby" {
-			bwt.RubyTemplate(body("name"), body("platform"), hostService())
+			bwt.RubyTemplate(body("name"), body("platform"), body("hostService"))
 		} else if body("lang") == "rust" {
-			bwt.RustTemplate(body("name"), body("platform"), body("packageManager"), hostService())
+			bwt.RustTemplate(body("name"), body("platform"), body("packageManager"), body("hostService"))
 		} else if body("lang") == "swift" {
-			bwt.SwiftTemplate(body("name"), body("platform"), hostService())
+			bwt.SwiftTemplate(body("name"), body("platform"), body("hostService"))
 		}
 
 		createRepo := exec.Command("bash", "-c", fmt.Sprintf(`
