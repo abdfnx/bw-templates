@@ -5,6 +5,9 @@ on:
     tags:
       - "*"
 
+env:
+  GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+
 jobs:
   build-botway:
     runs-on: ubuntu-latest
