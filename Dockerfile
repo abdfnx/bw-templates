@@ -53,6 +53,8 @@ RUN go mod download
 
 RUN CGO_ENABLED=0 GOOS=linux go build -a -ldflags '-w -extldflags "-static"' -o ./create-botway-bot
 
+ENV PORT 7050
+
 EXPOSE 7050
 
 ENTRYPOINT ["/app/create-botway-bot"]
