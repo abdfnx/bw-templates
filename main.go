@@ -95,6 +95,8 @@ func main() {
 			return err
 		}
 
+		os.RemoveAll(body("name"))
+
 		return c.SendString("created successfully 📦")
 	})
 
