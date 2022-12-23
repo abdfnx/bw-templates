@@ -1,6 +1,6 @@
 FROM golang:alpine
 
-ENV PKGS = "zip unzip git curl npm py3-pip openssl openssl-dev build-base autoconf automake libtool gcc-doc python3-dev neofetch make wget gcc ca-certificates llvm nano vim ruby-full ruby-dev libffi-dev libgcc libssl1.1 zlib"
+ENV PKGS "zip unzip git curl npm py3-pip openssl openssl-dev build-base autoconf automake libtool gcc-doc python3-dev neofetch make wget gcc ca-certificates llvm nano vim ruby-full ruby-dev libffi-dev libgcc libssl1.1 zlib"
 
 RUN apk upgrade && \
     apk add --update $PKGS
@@ -17,7 +17,7 @@ RUN rm -rf gh*
 RUN pip install tld --ignore-installed six distlib --user
 RUN curl https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
 
-ENV PATH = "$HOME/.pyenv/bin:$PATH"
+ENV PATH "$HOME/.pyenv/bin:$PATH"
 
 RUN echo 'eval "$(pyenv init -)"' >> ~/.bashrc
 RUN echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
@@ -30,7 +30,7 @@ RUN curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | py
 ### poetry ###
 RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
 
-ENV PATH = "/root/.poetry/bin:$PATH"
+ENV PATH "/root/.poetry/bin:$PATH"
 
 RUN echo 'eval "$(poetry env install -q)"' >> ~/.bashrc
 RUN echo 'eval "$(poetry env shell -q)"' >> ~/.bashrc
