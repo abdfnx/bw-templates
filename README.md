@@ -1,20 +1,3 @@
-# Botway Templates
+# Create Botway Bot
 
-> Here you can find all botway templates handlers
-
-- **C**
-- **C++**
-- **Crystal**
-- **C#**
-- **Dart**
-- **Deno**
-- **Go**
-- **Java**
-- **Kotlin**
-- **Nim**
-- **Node.js**
-- **PHP**
-- **Python**
-- **Ruby**
-- **Rust**
-- **Swift**
+> Setup a botway bot by running one command.
