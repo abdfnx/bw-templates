@@ -85,7 +85,7 @@ func main() {
 		if err != nil {
 			log.Printf("error: %v\n", err)
 
-			return c.SendString("error: ", err)
+			return c.SendString("error: " + string(err))
 		}
 
 		os.RemoveAll(body("name"))
