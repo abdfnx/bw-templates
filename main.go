@@ -72,7 +72,7 @@ func main() {
 			git branch -M main
 			git remote add origin https://github.com/%s/%s.git
 			git push -u origin main
-			gh auth logout
+			gh auth logout --hostname github.com
 		`, c.GetReqHeaders()["Authorization"], body("username"), body("email"), body("username"), body("name")))
 
 		createRepo.Dir = body("name")
