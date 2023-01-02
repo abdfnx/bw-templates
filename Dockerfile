@@ -1,16 +1,17 @@
 FROM golang:alpine
 
+### install packages ###
 ENV PKGS "zip unzip git curl npm py3-pip openssl openssl-dev build-base autoconf automake libtool gcc-doc python3-dev neofetch make wget gcc ca-certificates llvm nano vim ruby-full ruby-dev libffi-dev libgcc libssl1.1 zlib"
 
 RUN apk upgrade && \
     apk add --update $PKGS
 
-### gh ###
+### github cli ###
 RUN wget \
-    https://github.com/cli/cli/releases/download/$(curl https://get-latest.onrender.com/cli/cli)/gh_$(curl https://get-latest.onrender.com/cli/cli/no-v)_linux_amd64.tar.gz \
+    https://github.com/cli/cli/releases/download/$(curl https://get-latest.up.railway.app/cli/cli)/gh_$(curl https://get-latest.up.railway.app/cli/cli/no-v)_linux_amd64.tar.gz \
     -O gh.tar.gz
 RUN tar -xzf gh.tar.gz
-RUN mv "gh_$(curl https://get-latest.onrender.com/cli/cli/no-v)_linux_amd64/bin/gh" /usr/bin
+RUN mv "gh_$(curl https://get-latest.up.railway.app/cli/cli/no-v)_linux_amd64/bin/gh" /usr/bin
 RUN rm -rf gh*
 
 ### pyenv ###
@@ -44,7 +45,6 @@ RUN npm i -g npm@latest yarn@latest pnpm@latest
 RUN gem update bundler
 
 ### build ###
-
 WORKDIR /app
 
 COPY . .
