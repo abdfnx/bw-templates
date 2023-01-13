@@ -8,10 +8,10 @@ RUN apk upgrade && \
 
 ### github cli ###
 RUN wget \
-    https://github.com/cli/cli/releases/download/$(curl https://get-latest.up.railway.app/cli/cli)/gh_$(curl https://get-latest.up.railway.app/cli/cli/no-v)_linux_amd64.tar.gz \
+    https://github.com/cli/cli/releases/download/$(curl https://get-latest.deno.dev/cli/cli)/gh_$(curl https://get-latest.deno.dev/cli/cli?no-v=true)_linux_amd64.tar.gz \
     -O gh.tar.gz
 RUN tar -xzf gh.tar.gz
-RUN mv "gh_$(curl https://get-latest.up.railway.app/cli/cli/no-v)_linux_amd64/bin/gh" /usr/bin
+RUN mv "gh_$(curl https://get-latest.deno.dev/cli/cli?no-v=true)_linux_amd64/bin/gh" /usr/bin
 RUN rm -rf gh*
 
 ### pyenv ###
