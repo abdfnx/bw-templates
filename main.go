@@ -6,7 +6,7 @@ import (
 	"os"
 	"os/exec"
 
-	bwt "github.com/abdfnx/bw-templates/langs"
+	bwt "github.com/abdfnx/create-botway-bot/langs"
 	"github.com/gofiber/fiber/v2"
 	"github.com/tidwall/gjson"
 )

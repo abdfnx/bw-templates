@@ -1,4 +1,4 @@
-module github.com/abdfnx/bw-templates
+module github.com/abdfnx/create-botway-bot
 
 go 1.19
 

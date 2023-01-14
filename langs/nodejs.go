@@ -41,7 +41,7 @@ func NodejsTemplate(botName, pm, platform, hostService string, isTs bool) {
 			fmt.Println(constants.FAIL_FOREGROUND.Render(" npm is not installed"))
 		} else {
 			mainFile := os.WriteFile(filepath.Join(botName, "src", "main.js"), []byte(MainJSContent(platform)), 0644)
-			dockerFile := os.WriteFile(filepath.Join(botName, "Dockerfile"), []byte(DockerfileContent(botName, hostService, pm+".dockerfile", platform)), 0644)
+			dockerFile := os.WriteFile(filepath.Join(botName, "Dockerfile"), []byte(DockerfileContent(botName, pm+".dockerfile", platform)), 0644)
 			resourcesFile := os.WriteFile(filepath.Join(botName, "resources.md"), []byte(Resources(platform, "nodejs.md")), 0644)
 			packageFile := os.WriteFile(filepath.Join(botName, "package.json"), []byte(Content("package.json", platform+"-"+isTypescript(isTs), "", "")), 0644)
 
