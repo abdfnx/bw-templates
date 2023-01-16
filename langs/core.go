@@ -80,7 +80,7 @@ func CheckProject(botName, botType string) {
 
 func startCmd(botName, lang, pm string) string {
 	nodeCmd := pm + " start"
-	denoCmd := "deno run --allow-all main.ts"
+	denoCmd := "deno task run"
 
 	if lang == "discord" && pm == "pip" {
 		if runtime.GOOS == "windows" {
