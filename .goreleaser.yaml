@@ -1,0 +1,76 @@
+project_name: create-botway-bot
+
+env:
+  - CGO_ENABLED=0
+
+release:
+  prerelease: auto
+  draft: true
+  name_template: "Create Botway Bot 🏗️ {{ .Tag }}"
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - <<: &build_defaults
+      binary: bin/create-botway-bot
+      main: ./
+
+    id: macos
+    goos: [darwin]
+    goarch: [amd64, arm64, arm]
+
+  - <<: *build_defaults
+    id: linux
+    goos: [linux]
+    goarch: [amd64, arm64, arm, 386]
+
+  - <<: *build_defaults
+    id: windows
+    goos: [windows]
+    goarch: [amd64, arm64, arm, 386]
+
+  - <<: *build_defaults
+    id: freebsd
+    goos: [freebsd]
+    goarch: [amd64, arm64, arm, 386]
+
+archives:
+  - id: unix
+    builds: [macos, linux, freebsd]
+    <<: &archive_defaults
+      name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Tag }}_{{ .Arch }}"
+
+    wrap_in_directory: "true"
+    replacements:
+      darwin: macos
+    format: zip
+    files:
+      - LICENSE
+
+  - id: windows
+    builds: [windows]
+    <<: *archive_defaults
+    wrap_in_directory: "false"
+    format: zip
+    files:
+      - LICENSE
+
+nfpms:
+  - license: MIT
+    maintainer: abdfnx
+    homepage: https://github.com/abdfnx/create-botway-bot
+    bindir: /usr
+    file_name_template: "{{ .ProjectName }}_{{ .Tag }}_{{ .Arch }}"
+    description: "🏗️ Setup a botway bot by running one command."
+    formats:
+      - apk
+      - deb
+      - rpm
+
+checksum:
+  name_template: "checksums.txt"
+
+snapshot:
+  name_template: "{{ .Version }}-next"

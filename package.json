@@ -1,0 +1,33 @@
+{
+  "name": "create-botway-bot",
+  "version": "0.1.0",
+  "description": "🏗️ Setup a botway bot.",
+  "type": "module",
+  "author": "abdfnx",
+  "license": "MIT",
+  "homepage": "https://github.com/abdfnx/create-botway-bot",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abdfnx/create-botway-bot.git"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "bin": {
+    "create-botway-bot": "bin/create-botway-bot.js"
+  },
+  "scripts": {
+    "postinstall": "node ./install.js"
+  },
+  "files": [
+    "bin",
+    "npm-config.js",
+    "install.js"
+  ],
+  "dependencies": {
+    "global": "^4.4.0",
+    "node-fetch": "^3.2.10",
+    "node-stream-zip": "^1.15.0",
+    "stream": "^0.0.2"
+  }
+}

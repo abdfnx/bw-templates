@@ -7,59 +7,61 @@ import (
 	"os/exec"
 
 	bwt "github.com/abdfnx/create-botway-bot/langs"
-	"github.com/gofiber/fiber/v2"
-	"github.com/tidwall/gjson"
 )
 
 func main() {
-	app := fiber.New()
+	name := os.Args[1]
+	platform := os.Args[2]
+	lang := os.Args[3]
+	packageManager := os.Args[4]
+	hostService := os.Args[5]
+	authToken := ""
 
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("ok 👍")
-	})
+	if len(os.Args[1:]) == 6 {
+		authToken = os.Args[6]
+	}
 
-	app.Post("/create", func(c *fiber.Ctx) error {
-		body := func(value string) string {
-			return gjson.Get(string(c.Body()), value).String()
-		}
+	bwt.CreateBot(name, platform, lang, packageManager, hostService)
 
-		bwt.CreateBot(body("name"), body("platform"), body("lang"), body("packageManager"), body("hostService"))
+	if lang == "c" {
+		bwt.CTemplate(name, hostService)
+	} else if lang == "cpp" {
+		bwt.CppTemplate(name, platform, hostService)
+	} else if lang == "crystal" {
+		bwt.CrystalTemplate(name, hostService)
+	} else if lang == "csharp" {
+		bwt.CsharpTemplate(name, platform, hostService)
+	} else if lang == "dart" {
+		bwt.DartTemplate(name, platform, hostService)
+	} else if lang == "deno" {
+		bwt.DenoTemplate(name, platform, hostService)
+	} else if lang == "go" {
+		bwt.GoTemplate(name, platform, hostService)
+	} else if lang == "java" {
+		bwt.JavaTemplate(name, platform, hostService)
+	} else if lang == "kotlin" {
+		bwt.KotlinTemplate(name, platform, hostService)
+	} else if lang == "nim" {
+		bwt.NimTemplate(name, platform, hostService)
+	} else if lang == "nodejs" {
+		bwt.NodejsTemplate(name, packageManager, platform, hostService, false)
+	} else if lang == "typescript" {
+		bwt.NodejsTemplate(name, packageManager, platform, hostService, true)
+	} else if lang == "php" {
+		bwt.PHPTemplate(name, platform, hostService)
+	} else if lang == "python" {
+		bwt.PythonTemplate(name, platform, packageManager, hostService)
+	} else if lang == "ruby" {
+		bwt.RubyTemplate(name, platform, hostService)
+	} else if lang == "rust" {
+		bwt.RustTemplate(name, platform, packageManager, hostService)
+	} else if lang == "swift" {
+		bwt.SwiftTemplate(name, platform, hostService)
+	}
 
-		if body("lang") == "c" {
-			bwt.CTemplate(body("name"), body("hostService"))
-		} else if body("lang") == "cpp" {
-			bwt.CppTemplate(body("name"), body("platform"), body("hostService"))
-		} else if body("lang") == "crystal" {
-			bwt.CrystalTemplate(body("name"), body("hostService"))
-		} else if body("lang") == "csharp" {
-			bwt.CsharpTemplate(body("name"), body("platform"), body("hostService"))
-		} else if body("lang") == "dart" {
-			bwt.DartTemplate(body("name"), body("platform"), body("hostService"))
-		} else if body("lang") == "deno" {
-			bwt.DenoTemplate(body("name"), body("platform"), body("hostService"))
-		} else if body("lang") == "go" {
-			bwt.GoTemplate(body("name"), body("platform"), body("hostService"))
-		} else if body("lang") == "java" {
-			bwt.JavaTemplate(body("name"), body("platform"), body("hostService"))
-		} else if body("lang") == "kotlin" {
-			bwt.KotlinTemplate(body("name"), body("platform"), body("hostService"))
-		} else if body("lang") == "nim" {
-			bwt.NimTemplate(body("name"), body("platform"), body("hostService"))
-		} else if body("lang") == "nodejs" {
-			bwt.NodejsTemplate(body("name"), body("packageManager"), body("platform"), body("hostService"), false)
-		} else if body("lang") == "typescript" {
-			bwt.NodejsTemplate(body("name"), body("packageManager"), body("platform"), body("hostService"), true)
-		} else if body("lang") == "php" {
-			bwt.PHPTemplate(body("name"), body("platform"), body("hostService"))
-		} else if body("lang") == "python" {
-			bwt.PythonTemplate(body("name"), body("platform"), body("packageManager"), body("hostService"))
-		} else if body("lang") == "ruby" {
-			bwt.RubyTemplate(body("name"), body("platform"), body("hostService"))
-		} else if body("lang") == "rust" {
-			bwt.RustTemplate(body("name"), body("platform"), body("packageManager"), body("hostService"))
-		} else if body("lang") == "swift" {
-			bwt.SwiftTemplate(body("name"), body("platform"), body("hostService"))
-		}
+	if authToken != "" {
+		username := os.Args[7]
+		email := os.Args[8]
 
 		createRepo := exec.Command("bash", "-c", fmt.Sprintf(`
 			echo %s | gh auth login --with-token
@@ -72,10 +74,9 @@ func main() {
 			git branch -M main
 			git remote add origin https://github.com/%s/%s.git
 			git push -u origin main
-			gh auth logout --hostname github.com
-		`, c.GetReqHeaders()["Authorization"], body("username"), body("email"), body("username"), body("name")))
+		`, authToken, username, email, username, name))
 
-		createRepo.Dir = body("name")
+		createRepo.Dir = name
 		createRepo.Stdin = os.Stdin
 		createRepo.Stdout = os.Stdout
 		createRepo.Stderr = os.Stderr
@@ -84,14 +85,8 @@ func main() {
 
 		if err != nil {
 			log.Printf("error: %v\n", err)
-
-			return c.SendString("error: " + err.Error())
 		}
+	}
 
-		os.RemoveAll(body("name"))
-
-		return c.SendString("created successfully 📦")
-	})
-
-	log.Fatal(app.Listen(":7050"))
+	// os.RemoveAll(name)
 }
