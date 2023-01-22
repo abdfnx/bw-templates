@@ -17,7 +17,7 @@ func main() {
 	hostService := os.Args[5]
 	authToken := ""
 
-	if len(os.Args[1:]) == 6 {
+	if len(os.Args[1:]) >= 6 {
 		authToken = os.Args[6]
 	}
 
