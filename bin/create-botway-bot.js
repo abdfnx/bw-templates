@@ -8,9 +8,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 try {
-  execFileSync(path.resolve(`${__dirname}/create-botway-bot`), process.argv.slice(2), {
-    stdio: "inherit",
-  });
+  execFileSync(
+    path.resolve(`${__dirname}/create-botway-bot`),
+    process.argv.slice(2),
+    {
+      stdio: "inherit",
+    }
+  );
 } catch (e) {
   console.error(e);
 

@@ -28,7 +28,7 @@ async function install() {
   let execType = "";
 
   if (process.platform == "win32") {
-    execType = ".exe"
+    execType = ".exe";
   }
 
   const folder = (old) => {
