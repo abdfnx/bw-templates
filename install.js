@@ -25,6 +25,12 @@ async function install() {
   url = url.replace(/{{version}}/g, version);
   url = url.replace(/{{bin_name}}/g, binName);
 
+  let execType = "";
+
+  if (process.platform == "win32") {
+    execType = ".exe"
+  }
+
   const folder = (old) => {
     let f =
       binName +
@@ -37,9 +43,9 @@ async function install() {
       ARCH_MAPPING[process.arch];
 
     if (old == "yes") {
-      return path.join(f, "bin", "create-botway-bot");
+      return path.join(f, "bin", `create-botway-bot${execType}`);
     } else if (old == "no") {
-      return path.join("bin", "create-botway-bot");
+      return path.join("bin", `create-botway-bot${execType}`);
     } else {
       return f;
     }
@@ -63,16 +69,16 @@ async function install() {
 
   await zip.close();
 
-  await fs.rename(folder("yes"), folder("no"), function (err) {
-    if (err) throw err;
-  });
+  // await fs.rename(folder("yes"), folder("no"), function (err) {
+  //   if (err) throw err;
+  // });
 
   // chmod +x /bin/create-botway-bot
-  await fs.chmod(path.join("bin", "create-botway-bot"), 0o755);
+  await fs.chmod(path.join("bin", `create-botway-bot${execType}`), 0o755);
 
   await fs.rm(zipFile);
 
-  await fs.rm(folder(), { recursive: true });
+  // await fs.rm(folder(), { recursive: true });
 }
 
 install()
