@@ -69,16 +69,18 @@ async function install() {
 
   await zip.close();
 
-  // await fs.rename(folder("yes"), folder("no"), function (err) {
-  //   if (err) throw err;
-  // });
+  if (process.platform != "win32") {
+    await fs.rename(folder("yes"), folder("no"), function (err) {
+      if (err) throw err;
+    });
+
+    await fs.rm(folder(), { recursive: true });
+  }
 
   // chmod +x /bin/create-botway-bot
   await fs.chmod(path.join("bin", `create-botway-bot${execType}`), 0o755);
 
   await fs.rm(zipFile);
-
-  // await fs.rm(folder(), { recursive: true });
 }
 
 install()
