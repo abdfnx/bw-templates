@@ -1,6 +1,6 @@
 module github.com/abdfnx/create-botway-bot
 
-go 1.19
+go 1.20
 
 require (
 	github.com/abdfnx/botway v0.2.0
