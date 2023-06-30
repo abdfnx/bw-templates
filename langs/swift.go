@@ -25,6 +25,10 @@ func SwiftTemplate(botName, platform, hostService string) {
 	dockerFile := os.WriteFile(filepath.Join(botName, "Dockerfile"), []byte(DockerfileContent(botName, "swift.dockerfile", platform)), 0644)
 	resourcesFile := os.WriteFile(filepath.Join(botName, "resources.md"), []byte(Resources(platform, "swift.md")), 0644)
 
+	if err := os.Mkdir(filepath.Join(botName, "Sources", botName), os.ModePerm); err != nil {
+		log.Fatal(err)
+	}
+
 	if mainFile != nil {
 		log.Fatal(mainFile)
 	}
