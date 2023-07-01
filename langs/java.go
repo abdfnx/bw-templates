@@ -106,5 +106,4 @@ func JavaTemplate(botName, platform, hostService string) {
 	}
 
 	CheckProject(botName, platform)
-
 }

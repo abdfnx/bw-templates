@@ -1,6 +1,6 @@
 {
   "name": "create-botway-bot",
-  "version": "v0.2.7",
+  "version": "v0.3.0",
   "description": "🏗️ Setup a botway bot.",
   "type": "module",
   "author": "abdfnx",

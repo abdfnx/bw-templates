@@ -138,6 +138,8 @@ func startCmd(botName, lang, pm string) string {
 		return "nim c -r src/main.nim"
 	} else if lang == "crystal" {
 		return "crystal run src/main.cr"
+	} else if lang == "rust" {
+		return "cargo run src/main.rs"
 	}
 
 	return "# Write your start command here"
@@ -496,10 +498,6 @@ func CreateBot(botName, platform, lang, pm, hs string) {
 	}
 
 	dotGitIgnoreFileContent = respone + "\n*.lock\nbotway-tokens.env\nbotway.json"
-
-	if lang == "rust" && pm == "fleet" {
-		dotGitIgnoreFileContent += "\nfleet.toml"
-	}
 
 	dotGitIgnoreFile := os.WriteFile(filepath.Join(botName, ".gitignore"), []byte(dotGitIgnoreFileContent), 0644)
 	dotGitKeepFile := os.WriteFile(filepath.Join(botName, "config", ".gitkeep"), []byte(""), 0644)
