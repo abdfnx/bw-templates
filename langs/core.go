@@ -82,19 +82,19 @@ func startCmd(botName, lang, pm string) string {
 	nodeCmd := pm + " start"
 	denoCmd := "deno task run"
 
-	if lang == "discord" && pm == "pip" {
+	if lang == "python" && pm == "pip" {
 		if runtime.GOOS == "windows" {
 			return `py .\src\main.py`
 		} else {
 			return `python3 ./src/main.py`
 		}
-	} else if lang == "discord" && pm == "pipenv" {
+	} else if lang == "python" && pm == "pipenv" {
 		if runtime.GOOS == "windows" {
 			return `pipenv run py .\src\main.py`
 		} else {
 			return `pipenv run python3 ./src/main.py`
 		}
-	} else if lang == "discord" && pm == "poetry" {
+	} else if lang == "python" && pm == "poetry" {
 		if runtime.GOOS == "windows" {
 			return `poetry run .\src\main.py`
 		} else {
