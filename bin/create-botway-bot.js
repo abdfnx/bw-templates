@@ -13,7 +13,7 @@ try {
     process.argv.slice(2),
     {
       stdio: "inherit",
-    }
+    },
   );
 } catch (e) {
   console.error(e);
