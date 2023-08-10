@@ -22,7 +22,7 @@ func NimbleFileContent(platform string) string {
 	return Content(platform+"_nim.nimble", platform+"-nim", "", "")
 }
 
-func NimTemplate(botName, platform, hostService string) {
+func NimTemplate(botName, platform string) {
 	mainFile := os.WriteFile(filepath.Join(botName, "src", "main.nim"), []byte(MainNimContent(platform)), 0644)
 	botnimFile := os.WriteFile(filepath.Join(botName, "src", "botnim.nim"), []byte(BotnimContent(botName)), 0644)
 	nimbleFile := os.WriteFile(filepath.Join(botName, botName+".nimble"), []byte(NimbleFileContent(platform)), 0644)

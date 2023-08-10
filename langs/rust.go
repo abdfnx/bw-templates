@@ -14,7 +14,7 @@ func CargoFileContent(botName, platform string) string {
 	return Content("Cargo.toml", platform+"-rust", botName, "")
 }
 
-func RustTemplate(botName, platform, pm, hostService string) {
+func RustTemplate(botName, platform, pm string) {
 	mainFile := os.WriteFile(filepath.Join(botName, "src", "main.rs"), []byte(MainRsContent(platform)), 0644)
 	cargoFile := os.WriteFile(filepath.Join(botName, "Cargo.toml"), []byte(CargoFileContent(botName, platform)), 0644)
 	dockerFile := os.WriteFile(filepath.Join(botName, "Dockerfile"), []byte(DockerfileContent(botName, pm+".dockerfile", platform)), 0644)

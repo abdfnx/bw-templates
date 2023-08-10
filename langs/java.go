@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 )
 
-func JavaTemplate(botName, platform, hostService string) {
+func JavaTemplate(botName, platform string) {
 	createDirs(botName, "java", platform)
 
 	botlinFile := os.WriteFile(filepath.Join(botName, "app", "src", "main", "java", "core", "Botway.kt"), []byte(BotlinContent()), 0644)

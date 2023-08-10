@@ -22,7 +22,7 @@ func MainTSContent(platform string) string {
 	return Content("main.ts", platform+"-nodejs-ts", "", "")
 }
 
-func NodejsTemplate(botName, pm, platform, hostService string, isTs bool) {
+func NodejsTemplate(botName, pm, platform string, isTs bool) {
 	tmpName, ext, content := isTypescript(platform, isTs)
 
 	mainFile := os.WriteFile(filepath.Join(botName, "src", "main."+ext), []byte(content), 0644)

@@ -18,7 +18,7 @@ func ComposerFileContent(botName, platform string) string {
 	return Content("composer.json", platform+"-php", botName, "")
 }
 
-func PHPTemplate(botName, platform, hostService string) {
+func PHPTemplate(botName, platform string) {
 	mainFile := os.WriteFile(filepath.Join(botName, "src", "main.php"), []byte(MainPHPContent(platform)), 0644)
 	botwayFile := os.WriteFile(filepath.Join(botName, "src", "botway.php"), []byte(BotwayPHPContent()), 0644)
 	composerFile := os.WriteFile(filepath.Join(botName, "composer.json"), []byte(ComposerFileContent(botName, platform)), 0644)

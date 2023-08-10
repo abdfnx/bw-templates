@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 )
 
-func DenoTemplate(botName, platform, hostService string) {
+func DenoTemplate(botName, platform string) {
 	if err := os.Mkdir(filepath.Join(botName, ".vscode"), os.ModePerm); err != nil {
 		log.Fatal(err)
 	}

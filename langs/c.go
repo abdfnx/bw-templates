@@ -18,7 +18,7 @@ func CRunPsFileContent() string {
 	return Content("run.ps1", "discord-c", "", "")
 }
 
-func CTemplate(botName, hostService string) {
+func CTemplate(botName string) {
 	mainFile := os.WriteFile(filepath.Join(botName, "src", "main.c"), []byte(MainCContent()), 0644)
 	botwayHeaderFile := os.WriteFile(filepath.Join(botName, "src", "botway.h"), []byte(BWCContent(botName)), 0644)
 	runPsFile := os.WriteFile(filepath.Join(botName, "run.ps1"), []byte(CRunPsFileContent()), 0644)

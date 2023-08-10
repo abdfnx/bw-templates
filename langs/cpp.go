@@ -34,7 +34,7 @@ func RunPsFileContent(platform string) string {
 	return Content("run.ps1", "discord-cpp", "", "")
 }
 
-func CppTemplate(botName, platform, hostService string) {
+func CppTemplate(botName, platform string) {
 	if platform == "discord" {
 		if err := os.Mkdir(filepath.Join(botName, "cmake"), os.ModePerm); err != nil {
 			log.Fatal(err)

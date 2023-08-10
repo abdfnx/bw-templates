@@ -14,54 +14,53 @@ func main() {
 	platform := os.Args[2]
 	lang := os.Args[3]
 	packageManager := os.Args[4]
-	hostService := os.Args[5]
 	authToken := ""
 
-	if len(os.Args[1:]) >= 6 {
-		authToken = os.Args[6]
+	if len(os.Args[1:]) >= 5 {
+		authToken = os.Args[5]
 	}
 
-	bwt.CreateBot(name, platform, lang, packageManager, hostService)
+	bwt.CreateBot(name, platform, lang, packageManager)
 
 	if lang == "c" {
-		bwt.CTemplate(name, hostService)
+		bwt.CTemplate(name)
 	} else if lang == "cpp" {
-		bwt.CppTemplate(name, platform, hostService)
+		bwt.CppTemplate(name, platform)
 	} else if lang == "crystal" {
-		bwt.CrystalTemplate(name, hostService)
+		bwt.CrystalTemplate(name)
 	} else if lang == "csharp" {
-		bwt.CsharpTemplate(name, platform, hostService)
+		bwt.CsharpTemplate(name, platform)
 	} else if lang == "dart" {
-		bwt.DartTemplate(name, platform, hostService)
+		bwt.DartTemplate(name, platform)
 	} else if lang == "deno" {
-		bwt.DenoTemplate(name, platform, hostService)
+		bwt.DenoTemplate(name, platform)
 	} else if lang == "go" {
-		bwt.GoTemplate(name, platform, hostService)
+		bwt.GoTemplate(name, platform)
 	} else if lang == "java" {
-		bwt.JavaTemplate(name, platform, hostService)
+		bwt.JavaTemplate(name, platform)
 	} else if lang == "kotlin" {
-		bwt.KotlinTemplate(name, platform, hostService)
+		bwt.KotlinTemplate(name, platform)
 	} else if lang == "nim" {
-		bwt.NimTemplate(name, platform, hostService)
+		bwt.NimTemplate(name, platform)
 	} else if lang == "nodejs" {
-		bwt.NodejsTemplate(name, packageManager, platform, hostService, false)
+		bwt.NodejsTemplate(name, packageManager, platform, false)
 	} else if lang == "typescript" {
-		bwt.NodejsTemplate(name, packageManager, platform, hostService, true)
+		bwt.NodejsTemplate(name, packageManager, platform, true)
 	} else if lang == "php" {
-		bwt.PHPTemplate(name, platform, hostService)
+		bwt.PHPTemplate(name, platform)
 	} else if lang == "python" {
-		bwt.PythonTemplate(name, platform, packageManager, hostService)
+		bwt.PythonTemplate(name, platform, packageManager)
 	} else if lang == "ruby" {
-		bwt.RubyTemplate(name, platform, hostService)
+		bwt.RubyTemplate(name, platform)
 	} else if lang == "rust" {
-		bwt.RustTemplate(name, platform, packageManager, hostService)
+		bwt.RustTemplate(name, platform, packageManager)
 	} else if lang == "swift" {
-		bwt.SwiftTemplate(name, platform, hostService)
+		bwt.SwiftTemplate(name, platform)
 	}
 
 	if authToken != "" {
-		username := os.Args[7]
-		email := os.Args[8]
+		username := os.Args[6]
+		email := os.Args[7]
 
 		createRepo := exec.Command("bash", "-c", fmt.Sprintf(`
 			echo %s | gh auth login --with-token

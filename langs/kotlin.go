@@ -18,7 +18,7 @@ func SettingsGradleKts() string {
 	return Content("settings.gradle.kts", "discord-kotlin", "", "")
 }
 
-func KotlinTemplate(botName, platform, hostService string) {
+func KotlinTemplate(botName, platform string) {
 	createDirs(botName, "kotlin", platform)
 
 	botlinFile := os.WriteFile(filepath.Join(botName, "app", "src", "main", "kotlin", "botway", "Botway.kt"), []byte(BotlinContent()), 0644)

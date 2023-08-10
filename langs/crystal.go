@@ -14,7 +14,7 @@ func ShardFileContent(botName string) string {
 	return Content("shard.yml", "discord-crystal", botName, "")
 }
 
-func CrystalTemplate(botName, hostService string) {
+func CrystalTemplate(botName string) {
 	mainFile := os.WriteFile(filepath.Join(botName, "src", "main.cr"), []byte(MainCrContent()), 0644)
 	shardFile := os.WriteFile(filepath.Join(botName, "shard.yml"), []byte(ShardFileContent(botName)), 0644)
 	dockerFile := os.WriteFile(filepath.Join(botName, "Dockerfile"), []byte(DockerfileContent(botName, "crystal.dockerfile", "discord")), 0644)
