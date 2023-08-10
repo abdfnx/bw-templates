@@ -351,7 +351,7 @@ project.lock.json
 codealike.json`
 }
 
-func CreateBot(botName, platform, lang, pm, hs string) {
+func CreateBot(botName, platform, lang, pm string) {
 	hostService := "zeabur.com"
 
 	if err := os.Mkdir(botName, os.ModePerm); err != nil {
