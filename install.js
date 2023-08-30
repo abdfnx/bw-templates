@@ -6,7 +6,7 @@ import StreamZip from "node-stream-zip";
 import { ARCH_MAPPING, CONFIG, PLATFORM_MAPPING } from "./npm-config.js";
 import path from "path";
 
-async function install() {
+const install = async () => {
   const packageJson = await fs.readFile("package.json").then(JSON.parse);
 
   let version = packageJson.version;
@@ -70,7 +70,7 @@ async function install() {
   await zip.close();
 
   if (process.platform != "win32") {
-    await fs.rename(folder("yes"), folder("no"), function (err) {
+    await fs.rename(folder("yes"), folder("no"), (err) => {
       if (err) throw err;
     });
 
@@ -81,7 +81,7 @@ async function install() {
   await fs.chmod(path.join("bin", `create-botway-bot${execType}`), 0o755);
 
   await fs.rm(zipFile);
-}
+};
 
 install()
   .then(async () => {
